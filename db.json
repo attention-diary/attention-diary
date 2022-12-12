@@ -1,66 +1,31 @@
 {
-  "todos": [
+  "post": [
     {
-      "id": 3,
-      "title": "2번째수정전",
-      "content": "내용입니다수정전",
-      "comment": [
-        {
-          "commentId": 1,
-          "comment": "weqweqewq"
-        },
-        {
-          "commentId": 2,
-          "comment": "eqwewqewq"
-        },
-        {
-          "commentId": 3,
-          "comment": "ewqewq"
-        }
-      ]
+      "id": 1,
+      "title": "weqewqewqewq",
+      "content": "ewqewqewqew",
+      "comment": []
     },
     {
-      "title": "ewqewqewqq",
-      "content": "weqqeweq",
+      "title": "ㄷㅂㅈㅂㄷㅈ",
+      "content": "ㅂㅈㄸㅈㅂㄷㅈㅂ",
+      "comment": [],
+      "id": 2
+    },
+    {
+      "id": 4,
+      "title": "수정정완료",
+      "content": "최종수정햇습니다",
       "comment": [
         {
           "commentId": 1,
-          "comment": "eqwewq"
+          "commentContent": "weqewq"
         },
         {
           "commentId": 2,
-          "comment": "weqewq"
-        },
-        {
-          "commentId": 3,
-          "comment": "ewqewq"
-        },
-        {
-          "commentId": 4,
-          "comment": "qweewqqew"
-        },
-        {
-          "commentId": 5,
-          "comment": "ewqewqeqw"
-        },
-        {
-          "commentId": 6,
-          "comment": "ewqweqweq"
-        },
-        {
-          "commentId": 7,
-          "comment": " "
-        },
-        {
-          "commentId": 8,
-          "comment": "weqewqewq"
-        },
-        {
-          "commentId": 9,
-          "comment": "weqewqwqe"
+          "commentContent": "ewqewq"
         }
-      ],
-      "id": 4
+      ]
     }
   ]
 }

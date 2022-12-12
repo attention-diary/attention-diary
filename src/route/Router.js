@@ -1,16 +1,16 @@
 import { Route, Routes } from "react-router-dom";
-import Main from "../pages/Main";
-import Write from "../pages/Write";
-import Detail from "../pages/Detail";
+import HomePage from "../pages/HomePage";
+import EditPage from "../pages/EditPage";
+import DetailPage from "../pages/DetailPage";
+import PostPage from "../pages/PostPage";
 
 const Router = () => {
   return (
     <Routes>
-      <Route path="/" element={<Main />} />
-      {/* <Route path="/detail" element={<Detail />} />
-        <Route path="cart" element={<Cart />} /> */}
-      <Route path="/write" element={<Write />} />
-      <Route path="/detail" element={<Detail />} />
+      <Route path="/" element={<HomePage />} />
+      <Route path="/postPage" element={<PostPage />} />
+      <Route path="/editPage" element={<EditPage />} />
+      <Route path="/detailPage/:id" element={<DetailPage />} />
       <Route path="*" element={<div>이거 404 페이지요</div>} />
     </Routes>
   );

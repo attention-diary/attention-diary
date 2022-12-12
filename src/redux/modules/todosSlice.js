@@ -1,43 +1,56 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 import {
-  __getTodos,
-  __postTodos,
-  __deleteTodos,
-  __updateTodos,
+  __getPosts,
+  __postPosts,
+  __deletePosts,
+  __updatePosts,
   __postComment,
-  __getDetail,
+  __updateComment,
+  __deleteComment,
 } from "../thunk/thunk";
 
 let initialState = {
-  todos: [],
+  post: [],
   isLoading: false,
   error: null,
 };
 
-const todos = createSlice({
-  name: "todos",
+const post = createSlice({
+  name: "post",
   initialState: initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(__getTodos.pending, (state, action) => {
+    builder.addCase(__getPosts.pending, (state, action) => {
       state.isLoading = true;
     });
-    builder.addCase(__getTodos.fulfilled, (state, action) => {
-      state.todos = action.payload;
+    builder.addCase(__getPosts.fulfilled, (state, action) => {
+      state.post = action.payload;
       state.isLoading = false;
     });
-    builder.addCase(__getTodos.rejected, (state, action) => {
+    builder.addCase(__getPosts.rejected, (state, action) => {
       state.isLoading = false;
       state.error = action.payload;
     });
-    builder.addCase(__postTodos.fulfilled, (state, action) => {
-      state.todos.push(action.payload);
+    builder.addCase(__postPosts.fulfilled, (state, action) => {
+      console.log("addCase", action.payload);
+      state.post.push(action.payload);
     });
-    builder.addCase(__postComment.fulfilled, (state, action) => {});
+    builder.addCase(__postComment.fulfilled, (state, action) => {
+      state.post = state.post.filter((post) => {
+        return post.id !== action.payload.id;
+      });
+      state.post = [...state.post, action.payload];
+    });
+    builder.addCase(__deleteComment.fulfilled, (state, action) => {
+      state.post = state.post.filter((post) => {
+        return post.id !== action.payload.id;
+      });
+      state.post = [...state.post, action.payload];
+    });
   },
 });
 
-export const {} = todos.actions;
+export const {} = post.actions;
 
-export default todos.reducer;
+export default post.reducer;

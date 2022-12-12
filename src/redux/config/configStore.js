@@ -1,10 +1,10 @@
 // src/redux/config/configStore.js
 
-import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
+import { configureStore } from "@reduxjs/toolkit";
 /**
  * import 해온 것은 slice.reducer 입니다.
  */
-import todos from "../modules/todosSlice";
+import post from "../modules/todosSlice";
 
 /**
  * 모듈(Slice)이 여러개인 경우
@@ -14,7 +14,7 @@ import todos from "../modules/todosSlice";
  * 이것을 각각 모듈로 구현한 다음에 아래 코드로 2개의 모듈을 스토어에 연결해준 것 입니다.
  */
 const store = configureStore({
-  reducer: { todos: todos },
+  reducer: { post: post },
   // middleware: getDefaultMiddleware({
   //   serializableCheck: false,
   // }),
