@@ -1,25 +1,23 @@
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { __getTodos } from "../redux/thunk/thunk";
-import { useQuery } from "react-query";
-import { getTodo } from "../redux/queries/queries";
+import { __getPosts } from "../redux/thunk/thunk";
 
-const Main = () => {
-  // const { data: todos, isLoading, isError, error } = useQuery("todos", getTodo);
+const HomePage = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { todos, isLoading, error } = useSelector((state) => state.todos);
+  const { post, isLoading, error } = useSelector((state) => state.post);
 
   useEffect(() => {
-    dispatch(__getTodos());
+    dispatch(__getPosts());
   }, [dispatch]);
 
   const goWrite = (e) => {
-    navigate("/write");
+    navigate("/postPage");
   };
-  const goDetailHandler = (todo) => () => {
-    navigate("/detail", { state: todo });
+
+  const goDetailHandler = (post) => () => {
+    navigate(`/detailPage/:id=${post.id}`, { state: post });
   };
 
   if (isLoading) {
@@ -34,7 +32,6 @@ const Main = () => {
       <ul className="header">
         <li>TodoList 보기</li>
         <li onClick={goWrite}>ToDo작성</li>
-        <li>로그인</li>
       </ul>
 
       <div className="todoList">
@@ -47,11 +44,11 @@ const Main = () => {
             </tr>
           </thead>
           <tbody>
-            {todos.map((todo) => (
-              <tr onClick={goDetailHandler(todo)} key={todo.id}>
-                <td>{todo.id}</td>
-                <td>{todo.title}</td>
-                <td>{todo.content}</td>
+            {post.map((post) => (
+              <tr onClick={goDetailHandler(post)} key={post.id}>
+                <td>{post.id}</td>
+                <td>{post.title}</td>
+                <td>{post.content}</td>
               </tr>
             ))}
           </tbody>
@@ -61,4 +58,4 @@ const Main = () => {
   );
 };
 
-export default Main;
+export default HomePage;

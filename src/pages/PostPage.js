@@ -1,23 +1,19 @@
 import "./write.css";
 import { useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { __postTodos } from "../redux/thunk/thunk";
+import { __postPosts } from "../redux/thunk/thunk";
 
-const Write = () => {
+const PostPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const [inputs, setInputs] = useState({
     title: "",
     content: "",
+    name: "",
   });
-  const { title, content } = inputs;
-
-  // const fetchTodos = async () => {
-  //   console.log(await axios.get("http://localhost:3100/todos"));
-  // };
-  // fetchTodos();
+  const { title, content, name } = inputs;
 
   const onChnage = (e) => {
     const { value, name } = e.target;
@@ -27,14 +23,18 @@ const Write = () => {
     });
   };
 
-  const insetHander = () => {
+  const postHandler = (e) => {
+    if (title.trim() === "" || content.trim() === "") {
+      alert("내용과 제목을 입력해주세요");
+      return;
+    }
     const newContent = {
       title: title,
+      name: name,
       content: content,
-      isDone: false,
       comment: [],
     };
-    dispatch(__postTodos(newContent));
+    dispatch(__postPosts(newContent));
     navigate(-1);
   };
 
@@ -44,11 +44,19 @@ const Write = () => {
         <label>
           제목:
           <input type="text" name="title" value={title} onChange={onChnage} />
+          이름:
+          <input type="text" name="name" value={name} onChange={onChnage} />
         </label>
-        <label>내용:</label>
-        <textarea name="content" value={content} onChange={onChnage}></textarea>
+
+        <label>
+          내용:
+          <textarea
+            name="content"
+            value={content}
+            onChange={onChnage}
+          ></textarea>
+        </label>
       </div>
-      <button onClick={insetHander}>확인</button>
       <button
         onClick={() => {
           navigate(-1);
@@ -56,8 +64,9 @@ const Write = () => {
       >
         이전으로
       </button>
+      <button onClick={postHandler}>확인</button>
     </div>
   );
 };
 
-export default Write;
+export default PostPage;
