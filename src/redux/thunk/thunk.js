@@ -48,7 +48,6 @@ export const __postPosts = createAsyncThunk(
   async (payload, thunkAPI) => {
     try {
       const { post } = thunkAPI.getState();
-      console.log(post);
       let maxNum = 0;
       if (post.post.length >= 1) {
         maxNum = post.post.reduce((max, curr) => (max > curr ? max : curr));
@@ -102,9 +101,6 @@ export const __deleteComment = createAsyncThunk(
   "deleteComment",
   async (payload, thunkAPI) => {
     try {
-      //댓글을 삭제할때 통째로 기존에 있던 게시글들을 가져와서
-      //새로 바꿔끼어주는 형식으로 해줘야될까?
-      console.log(payload);
       const data = await axios.put(
         `http://localhost:3100/post/${payload.id}`,
         payload
