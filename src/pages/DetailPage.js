@@ -1,8 +1,9 @@
-import { useEffect, useState } from "react";
-// import { useQuery } from "react-query";
+import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
-// import { getDetail, getComment } from "../redux/queries/queries";
+import { useLocation, useNavigate } from "react-router-dom";
+import WriteBox from "../components/WriteBox";
+import Comment from "../components/comment/Comment";
+
 import {
   __deletePosts,
   __updatePosts,
@@ -10,7 +11,7 @@ import {
   __getPosts,
   __deleteComment,
 } from "../redux/thunk/thunk";
-import "./write.css";
+import "./detail.css";
 
 const DetailPage = () => {
   // const { id } = useParams();
@@ -19,28 +20,15 @@ const DetailPage = () => {
   const { state } = useLocation();
   const { post, isLoading, error } = useSelector((state) => state.post);
   const [comment, setComment] = useState("");
+  const commentId = useRef(0); //댓글을 수정한다면 사용해야할 id값
+  const isUpdate = useRef(false); //댓글을 수정한다면 사용될 flag값
   //댓글을 map함수돌면서 표시할 comments배열
   let comments = state.comment;
 
-  const [inputs, setInputs] = useState({
-    title: state.title,
-    content: state.content,
-    name: state.name,
-  });
-
-  const { title, content, name } = inputs;
-
   useEffect(() => {
     dispatch(__getPosts());
+    isUpdate.current = false;
   }, [dispatch]);
-
-  const onChangeTodo = (e) => {
-    const { value, name } = e.target;
-    setInputs({
-      ...inputs,
-      [name]: value,
-    });
-  };
 
   const deleteHandler = () => {
     if (!window.confirm("해당글을 삭제하시겠습니까?")) return;
@@ -48,13 +36,22 @@ const DetailPage = () => {
     navigate("/");
   };
 
+  const askNavigate = () => {
+    if (
+      comment.trim() !== "" &&
+      !window.confirm("수정사항이 사라질 수 있습니다. 홈으로 돌아가시겠습니까?")
+    )
+      return;
+    navigate("/");
+  };
+
   const updateHandler = () => {
     if (!window.confirm("해당글을 수정하시겠습니까?")) return;
     const newContent = {
       id: state.id,
-      title: title,
-      name: name,
-      content: content,
+      title: state.title,
+      name: state.name,
+      content: state.content,
       comment: [...comments],
     };
     navigate("/editPage", { state: newContent });
@@ -64,36 +61,45 @@ const DetailPage = () => {
     setComment(e.target.value);
   };
 
-  const commnetHandler = (e) => {
+  const commentHandler = (e) => {
+    if (comment.trim() === "") {
+      alert("댓글의 내용을 입력해주세요");
+      return;
+    }
     const newComment = {
       id: state.id,
+      commentId: commentId.current,
       commentContent: comment,
+      isUpdate: isUpdate.current,
     };
     dispatch(__postComment(newComment));
     setComment("");
+    isUpdate.current = false;
   };
 
-  const commentUpdateOrDeleteHandler =
-    (currntPost, isUpdate = false) =>
-    () => {
-      if (isUpdate) {
-        if (!window.confirm("해당 댓글을 수정하시겠습니까?")) return;
-        setComment(currntPost.commentContent);
-      }
-      //state에 있는 데이터중애 현재페이지의 있는데이터를 가져오기
-      console.log(post);
-      const currentData = post.filter((item) => {
-        return state.id === item.id;
-      });
-      //현재 데이터에서 삭제할려는 comment객체를 걸러주기
-      const commentArr = currentData[0].comment.filter((item) => {
-        return currntPost.commentId !== item.commentId;
-      });
-      //현재데이터에서 걸러진comment 배열을 담아서 payload로 보내줌
-      const payload = { ...currentData[0], comment: commentArr };
+  const commentUpdateHandler = (currntPost) => () => {
+    if (!window.confirm("해당 댓글을 수정하시겠습니까?")) return;
+    setComment(currntPost.commentContent);
+    const id = currntPost.commentId;
+    commentId.current = id;
+    isUpdate.current = true;
+  };
 
-      dispatch(__deleteComment(payload));
-    };
+  const commentDeleteHandler = (currntPost) => () => {
+    if (!window.confirm("해당 댓글을 삭제하시겠습니까?")) return;
+    //state에 있는 데이터중애 현재페이지의 있는데이터를 가져오기
+    const currentData = post.filter((item) => {
+      return state.id === item.id;
+    });
+    //현재 데이터에서 삭제할려는 comment객체를 걸러주기
+    const commentArr = currentData[0].comment.filter((item) => {
+      return currntPost.commentId !== item.commentId;
+    });
+    //현재데이터에서 걸러진comment 배열을 담아서 payload로 보내줌
+    const payload = { ...currentData[0], comment: commentArr };
+
+    dispatch(__deleteComment(payload));
+  };
 
   if (isLoading) {
     return <div>로딩 중....</div>;
@@ -113,72 +119,21 @@ const DetailPage = () => {
 
   return (
     <div className="inner">
-      <div className="writeBox">
-        <div>글 번호: {state.id}</div>
-        <label>
-          제목:
-          <input
-            type="text"
-            name="title"
-            value={title}
-            onChange={onChangeTodo}
-            readOnly
-          />
-          이름:
-          <input
-            type="text"
-            name="name"
-            value={name}
-            onChange={onChangeTodo}
-            readOnly
-          />
-        </label>
-        <label>내용:</label>
-        <textarea
-          name="content"
-          value={content}
-          onChange={onChangeTodo}
-          readOnly
-        ></textarea>
-      </div>
-      <button
-        onClick={() => {
-          navigate("/");
-        }}
-      >
-        홈으로
-      </button>
-      <button onClick={deleteHandler}>삭제하기</button>
-      <button onClick={updateHandler}>수정하기</button>
-      <div className="comment">
-        <div className="comment_box">
-          <label>댓글</label>
-          <textarea
-            className="comment_text"
-            onChange={onChangeComment}
-            value={comment}
-          ></textarea>
-          <button onClick={commnetHandler} className="commentBtn">
-            확인
-          </button>
-        </div>
-        <ul>
-          {comments &&
-            comments.map((ele) => {
-              return (
-                <li key={ele.commentId}>
-                  {ele.commentId} : {ele.commentContent}
-                  <button onClick={commentUpdateOrDeleteHandler(ele, true)}>
-                    수정
-                  </button>
-                  <button onClick={commentUpdateOrDeleteHandler(ele)}>
-                    삭제
-                  </button>
-                </li>
-              );
-            })}
-        </ul>
-      </div>
+      <WriteBox
+        updateHandler={updateHandler}
+        deleteHandler={deleteHandler}
+        post={state}
+        askNavigate={askNavigate}
+      />
+      <Comment
+        onChangeComment={onChangeComment}
+        comment={comment}
+        setComment={setComment}
+        commentHandler={commentHandler}
+        comments={comments}
+        commentDeleteHandler={commentDeleteHandler}
+        commentUpdateHandler={commentUpdateHandler}
+      />
     </div>
   );
 };

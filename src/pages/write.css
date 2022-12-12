@@ -1,4 +1,4 @@
-
+/* 
 .writeBox {
     width: 600px;
     margin-top: 200px;
@@ -20,18 +20,16 @@ label {
     font-size: 25px;
 }
 
-textarea {
+ textarea {
     margin-left: 60px;
     resize: none;
     font-size: 20px;
     box-sizing: content-box;
     width: 450px;
     height: 150px; 
-}
+} 
 
-/* .comment {
-    
-} */
+
 .comment > ul > li {
     margin: 30px;
     font-size: 22px;
@@ -53,4 +51,4 @@ button {
 
 button:hover {
     color: rgb(166, 153, 153);
-}
+} */
