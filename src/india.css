@@ -30,13 +30,6 @@
   padding: 40px;
 }
 
-.form-box label {
-  margin: 0;
-  margin-bottom: 16px;
-  font-size: 16px;
-  font-weight: 500;
-}
-
 .form-top {
   display: flex;
   margin-bottom: 50px;
@@ -44,6 +37,7 @@
 
 .form-top input {
   border: 1px solid #333333;
+  margin-top: 16px;
   margin-right: 170px;
   width: 70%;
   padding: 16px 10px;
@@ -52,10 +46,10 @@
 }
 
 .form-btm textarea {
-  margin: 0;
   width: 95%;
   height: 390px;
   font-size: 16px;
+  margin-top: 16px;
   padding: 16px 10px;
   border: 1px solid #333333;
   border-radius: 4px;
@@ -63,4 +57,24 @@
 
 .form-btm textarea::placeholder {
   font-size: 16px;
+}
+
+button {
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.btn-secondary {
+  padding: 14px 36px;
+  margin-right: 16px;
+  margin-top: 20px;
+  border-radius: 8px;
+  background-color: #6666FF;
+}
+
+.btn-secondary:hover {
+  background-color: #0099FF;
+  color: #fff;
 }

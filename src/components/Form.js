@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { changeInputField } from '../redux/modules/indiaSlice';
 
-export default function Form() {
+export default function Form({ state }) {
   const dispatch = useDispatch();
 
   const { isLoading, error } = useSelector(state => state.post);
@@ -26,7 +26,7 @@ export default function Form() {
               type="text"
               id="title"
               value={title}
-              placeholder="제목을 입력해주세요"
+              placeholder={state ? state.title : "제목을 입력해주세요"}
               onChange={(e) => handleChangeInputField(e)}
             />
           </div>
@@ -36,7 +36,7 @@ export default function Form() {
               type="text"
               id="name"
               value={name}
-              placeholder="이름을 입력해주세요"
+              placeholder={state ? state.name : "이름을 입력해주세요"}
               onChange={(e) => handleChangeInputField(e)}
             />
           </div>
@@ -48,7 +48,7 @@ export default function Form() {
             type="text"
             id="content"
             value={content}
-            placeholder="내용을 입력해주세요"
+            placeholder={state ? state.content : "내용을 입력해주세요"}
             onChange={(e) => handleChangeInputField(e)}
           />
         </form>

@@ -8,7 +8,7 @@ export default function EditButton({ editedPost, currPost }) {
   const { name, title, content } = editedPost;
 
   const handleClickEditPost = () => {
-    if (name && title && content) {
+    if (name || title || content) {
       dispatch(fetchEditPost({ ...currPost, name, title, content }));
       window.history.back();
     } else alert('값을 입력해주세요!')
@@ -17,6 +17,7 @@ export default function EditButton({ editedPost, currPost }) {
   return (
     <>
       <button
+        className='btn-secondary'
         type="button"
         onClick={() => handleClickEditPost()}
       >

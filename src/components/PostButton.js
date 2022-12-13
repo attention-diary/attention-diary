@@ -20,6 +20,7 @@ export default function PostButton({ editedPost, currPost }) {
   return (
     <>
       <button
+        className='btn-secondary'
         type="button"
         onClick={() => handleClickPost()}
       >
