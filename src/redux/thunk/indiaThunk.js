@@ -22,13 +22,8 @@ export const fetchEditPost = createAsyncThunk('india/fetchEditPost',
 );
 
 export const fetchPost = createAsyncThunk('india/fetchPost',
-  async (newPost, thunkAPI) => {
-    const { getState } = thunkAPI;
-    const state = getState();
-    const currPostArr = state.post.post;
-
-    const recentPost = currPostArr[currPostArr.length - 1];
-    const response = await postPost({ id: recentPost.id + 1, ...newPost });
+  async (newPost) => {
+    const response = await postPost(newPost);
 
     return response.data;
   }

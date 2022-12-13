@@ -15,7 +15,7 @@ const HomePage = () => {
   }, [dispatch]);
 
   const goWrite = (e) => {
-    navigate("/postPage");
+    navigate("/postPage", { state: post });
   };
 
   const goDetailHandler = (post) => () => {
@@ -47,13 +47,13 @@ const HomePage = () => {
             </tr>
           </thead>
           <tbody>
-            {post.map((post) => (
+            {post ? post.map((post) => (
               <tr onClick={goDetailHandler(post)} key={post.id}>
                 <td>{post.id}</td>
                 <td>{post.title}</td>
                 <td>{post.content}</td>
               </tr>
-            ))}
+            )) : null}
           </tbody>
         </table>
       </div>

@@ -1,11 +1,15 @@
 import "./write.css";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
+import { useSelector } from 'react-redux';
 
 import Form from '../components/Form';
 import PostButton from '../components/PostButton';
 
 const PostPage = () => {
   const navigate = useNavigate();
+
+  const { state } = useLocation();
+  const editedPost = useSelector(state => state.indiaReducer);
 
   return (
     <div className="inner">
@@ -19,7 +23,10 @@ const PostPage = () => {
       >
         이전으로
       </button>
-      <PostButton />
+      <PostButton
+        editedPost={editedPost}
+        currPost={state}
+      />
     </div>
   );
 };
