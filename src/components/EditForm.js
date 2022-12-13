@@ -1,25 +1,16 @@
-import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
-import { initialState } from '../utils/initialState';
+import { changeInputField } from '../redux/modules/indiaSlice';
 
-import EditButton from './EditButton';
+export default function EditForm() {
+  const dispatch = useDispatch();
+  const editedPost = useSelector(state => state.indiaReducer);
+  const { name, title, content } = editedPost;
+  console.log(name, title, content)
 
-// currPost객체를 받는다
-export default function EditForm({ currPost }) {
-  const [post, setPost] = useState({
-    ...initialState,
-    name: currPost.name,
-    title: currPost.title,
-    content: currPost.content,
-  });
-  const { name, title, content } = post;
-
-  const handleChangeContents = (event) => {
+  const handleChangeInputField = (event) => {
     const { target: { id, value } } = event;
-    setPost({
-      ...post,
-      [id]: value,
-    })
+    dispatch(changeInputField({ id, value }));
   }
 
   return (
@@ -31,23 +22,22 @@ export default function EditForm({ currPost }) {
           type="text"
           id="title"
           value={title}
-          onChange={(e) => handleChangeContents(e)}
+          onChange={(e) => handleChangeInputField(e)}
         />
         <label htmlFor="name">이름</label>
         <input
           type="text"
           id="name"
           value={name}
-          onChange={(e) => handleChangeContents(e)}
+          onChange={(e) => handleChangeInputField(e)}
         />
         <label htmlFor="content">내용</label>
         <input
           type="text"
           id="content"
           value={content}
-          onChange={(e) => handleChangeContents(e)}
+          onChange={(e) => handleChangeInputField(e)}
         />
-        <EditButton post={post} currPost={currPost} />
       </div>
     </>
   );

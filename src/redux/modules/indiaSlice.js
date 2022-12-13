@@ -15,7 +15,14 @@ export const indiaSlice = createSlice({
       commentContent: '',
     },
   },
-  reducers: {},
+  reducers: {
+    changeInputField: (state, { payload: { id, value } }) => {
+      return {
+        ...state,
+        [id]: value,
+      };
+    },
+  },
   extraReducers: builder => {
     builder
       .addCase(fetchGetPost.pending, (state) => {
@@ -32,7 +39,7 @@ export const indiaSlice = createSlice({
   }
 });
 
-// export const {} = indiaSlice.actions;
+export const { changeInputField } = indiaSlice.actions;
 
 const indiaReducer = indiaSlice.reducer;
 export default indiaReducer;
