@@ -2,7 +2,7 @@ import "./write.css";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
-import EditForm from '../components/EditForm';
+import Form from '../components/Form';
 import EditButton from '../components/EditButton';
 
 const EditPage = () => {
@@ -14,7 +14,7 @@ const EditPage = () => {
   return (
     <div className="inner">
       <div className="writeBox">
-        <EditForm />
+        <Form />
       </div>
       <button
         onClick={() => {

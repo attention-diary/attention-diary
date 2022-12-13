@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { changeInputField } from '../redux/modules/indiaSlice';
 
-export default function EditForm() {
+export default function Form() {
   const dispatch = useDispatch();
 
   const { isLoading, error } = useSelector(state => state.post);
@@ -18,7 +18,7 @@ export default function EditForm() {
     <>
       {isLoading ? <span>로딩중입니다!</span> : null}
       {error ? <span>뭔가 이상합니다!</span> : null}
-      <h2>관심이 필요한 오늘을 수정해주세요</h2>
+      <h2>관심이 필요한 오늘을 기록해주세요</h2>
       <div className='to-do-form'>
         <label htmlFor="title">제목</label>
         <input
