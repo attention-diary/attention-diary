@@ -1,15 +1,17 @@
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { __getPosts } from "../redux/thunk/thunk";
+import { fetchGetPost } from '../redux/thunk/indiaThunk';
 
 const HomePage = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { post, isLoading, error } = useSelector((state) => state.post);
+
+  const { post } = useSelector((state) => state.indiaReducer);
+  const { isLoading, error } = useSelector((state) => state.post);
 
   useEffect(() => {
-    dispatch(__getPosts());
+    dispatch(fetchGetPost());
   }, [dispatch]);
 
   const goWrite = (e) => {
@@ -27,6 +29,7 @@ const HomePage = () => {
   if (error) {
     return <div>{error.message}</div>;
   }
+
   return (
     <div className="inner">
       <ul className="header">

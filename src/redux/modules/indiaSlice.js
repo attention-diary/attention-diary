@@ -1,5 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+import { fetchGetPost } from '../thunk/indiaThunk';
+
 export const indiaSlice = createSlice({
   name: 'india',
   initialState: {
@@ -14,6 +16,20 @@ export const indiaSlice = createSlice({
     },
   },
   reducers: {},
+  extraReducers: builder => {
+    builder
+      .addCase(fetchGetPost.pending, (state) => {
+        state.staus = 'loading'
+      })
+      .addCase(fetchGetPost.rejected, (state) => {
+        state.staus = 'error'
+      })
+      .addCase(fetchGetPost.fulfilled, (state, { payload: { data } }) => {
+        return {
+          post: [...data]
+        }
+      })
+  }
 });
 
 // export const {} = indiaSlice.actions;
