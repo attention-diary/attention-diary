@@ -10,7 +10,6 @@ import {
   __getPosts,
   __deleteComment,
 } from "../redux/thunk/thunk";
-import "./write.css";
 
 const DetailPage = () => {
   // const { id } = useParams();
