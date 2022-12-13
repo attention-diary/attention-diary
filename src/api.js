@@ -16,3 +16,8 @@ export const getPost = async () => {
 export const editPost = async ({ id, name, title, content }) => {
   return await api.patch(POST + `/${id}`, { name, title, content });
 }
+
+// method POST /post
+export const postPost = async (newPost) => {
+  return await api.post(POST, newPost);
+}

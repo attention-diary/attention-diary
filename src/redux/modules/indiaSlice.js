@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { fetchGetPost, fetchEditPost } from '../thunk/indiaThunk';
+import { fetchGetPost, fetchEditPost, fetchPost } from '../thunk/indiaThunk';
 
 export const indiaSlice = createSlice({
   name: 'india',
@@ -43,6 +43,17 @@ export const indiaSlice = createSlice({
         state.staus = 'error'
       })
       .addCase(fetchEditPost.fulfilled, (state, { payload }) => {
+        return {
+          post: [...payload],
+        }
+      })
+      .addCase(fetchPost.pending, (state) => {
+        state.staus = 'loading'
+      })
+      .addCase(fetchPost.rejected, (state) => {
+        state.staus = 'error'
+      })
+      .addCase(fetchPost.fulfilled, (state, { payload }) => {
         return {
           post: [...payload],
         }
