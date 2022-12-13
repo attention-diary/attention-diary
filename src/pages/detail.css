@@ -4,11 +4,19 @@
     margin: "auto";
 }
 
+/* 스켈레톤 spinner */
+.spinner {
+    position: fixed;
+    bottom: 0px;
+    left: 50%;
+}
+
 /* common */
 textarea {
     resize: none;
     font-size: 22px;
 }
+
 button {
     cursor: pointer;
     border: 1px solid black;
@@ -24,6 +32,7 @@ button:hover {
     color: #6666ff;
 }
 
+/* 홈버튼  Post버튼 */
 .primary_btn {
     width: 200px;    
     font-size: 20px;
@@ -91,12 +100,13 @@ button:hover {
 
 /* 글 작성자 */
 .author {
-    font-size: 22px;
+    font-size: 26px;
     font-weight: 500;
 }
 
 /* 글 내용 */
 .content {
+    font-size: 26px;
     width: 750px;
     height: 300px; 
 }
@@ -117,16 +127,18 @@ button:hover {
 }
 
 .comment_list {
+    padding-left: 0;
     margin-top: 100px;
     width: 900px;
 }
 
+/* 댓글 작성된 박스 */
 .comment_li {
-    padding: 20px;
+    padding:20px;
     list-style: none;
     width: inherit;
     box-sizing: border-box;
-    border: 1px solid darkgray;
+    border: 2px solid #0099;
     border-radius: 10px;
     font-size: 20px;
     margin-bottom: 30px;

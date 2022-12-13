@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
 import WriteBox from "../components/WriteBox";
 import Comment from "../components/comment/Comment";
+import "bootstrap/dist/css/bootstrap.min.css";
+import Spinner from "react-bootstrap/Spinner";
 
 import {
   __deletePosts,
@@ -12,6 +14,7 @@ import {
   __deleteComment,
 } from "../redux/thunk/thunk";
 import "./detail.css";
+import useSpinner from "../hooks/useSpinner";
 
 const DetailPage = () => {
   // const { id } = useParams();
@@ -20,10 +23,46 @@ const DetailPage = () => {
   const { state } = useLocation();
   const { post, isLoading, error } = useSelector((state) => state.post);
   const [comment, setComment] = useState("");
+
+  const [
+    limitScroll,
+    setLimitScroll,
+    scrollY,
+    setScrollY,
+    commentIndex,
+    commentIsLoding,
+  ] = useSpinner();
+
   const commentId = useRef(0); //댓글을 수정한다면 사용해야할 id값
   const isUpdate = useRef(false); //댓글을 수정한다면 사용될 flag값
   //댓글을 map함수돌면서 표시할 comments배열
-  let comments = state.comment;
+  let comments = state.comment.slice(0, commentIndex.current);
+
+  const handleFollow = () => {
+    setScrollY(window.pageYOffset); //window 스크롤 값을 ScrollY에 저장
+  };
+
+  useEffect(() => {
+    const watch = () => {
+      window.addEventListener("scroll", handleFollow);
+    };
+    watch(); //이벤트함수실행
+    let timeId = null;
+    if (scrollY > limitScroll) {
+      commentIsLoding.current = true;
+      timeId = setTimeout(() => {
+        commentIndex.current += 3;
+        commentIsLoding.current = false;
+        setLimitScroll(limitScroll + 300);
+      }, 500);
+    } else {
+      commentIsLoding.current = false;
+    }
+    return () => {
+      window.removeEventListener("scroll", handleFollow); //이벤트함수 삭제
+      clearTimeout(timeId);
+    };
+  });
 
   useEffect(() => {
     dispatch(__getPosts());
@@ -42,6 +81,7 @@ const DetailPage = () => {
       !window.confirm("수정사항이 사라질 수 있습니다. 홈으로 돌아가시겠습니까?")
     )
       return;
+    commentIndex.current = 3;
     navigate("/");
   };
 
@@ -97,7 +137,6 @@ const DetailPage = () => {
     });
     //현재데이터에서 걸러진comment 배열을 담아서 payload로 보내줌
     const payload = { ...currentData[0], comment: commentArr };
-
     dispatch(__deleteComment(payload));
   };
 
@@ -114,7 +153,7 @@ const DetailPage = () => {
       return item.id === state.id;
     });
     if (find === undefined) return;
-    comments = find.comment;
+    comments = find.comment.slice(0, commentIndex.current);
   }
 
   return (
@@ -125,6 +164,7 @@ const DetailPage = () => {
         post={state}
         askNavigate={askNavigate}
       />
+
       <Comment
         onChangeComment={onChangeComment}
         comment={comment}
@@ -134,6 +174,11 @@ const DetailPage = () => {
         commentDeleteHandler={commentDeleteHandler}
         commentUpdateHandler={commentUpdateHandler}
       />
+      {commentIsLoding.current ? (
+        <Spinner className="spinner" />
+      ) : (
+        <Spinner className="spinner" style={{ display: "none" }} />
+      )}
     </div>
   );
 };
