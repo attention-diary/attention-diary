@@ -33,7 +33,6 @@ const post = createSlice({
       state.error = action.payload;
     });
     builder.addCase(__postPosts.fulfilled, (state, action) => {
-      console.log("addCase", action.payload);
       state.post.push(action.payload);
     });
     builder.addCase(__postComment.fulfilled, (state, action) => {

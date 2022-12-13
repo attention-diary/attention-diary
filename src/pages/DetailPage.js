@@ -6,6 +6,8 @@ import Comment from "../components/comment/Comment";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Spinner from "react-bootstrap/Spinner";
 
+import "./detail.css";
+
 import {
   __deletePosts,
   __updatePosts,
@@ -13,56 +15,24 @@ import {
   __getPosts,
   __deleteComment,
 } from "../redux/thunk/thunk";
-import "./detail.css";
+
 import useSpinner from "../hooks/useSpinner";
+// import useComment from "../hooks/useComment";
 
 const DetailPage = () => {
-  // const { id } = useParams();
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
   const { state } = useLocation();
   const { post, isLoading, error } = useSelector((state) => state.post);
   const [comment, setComment] = useState("");
+  const [limitScroll, commentIndex, commentIsLoding] = useSpinner();
 
-  const [
-    limitScroll,
-    setLimitScroll,
-    scrollY,
-    setScrollY,
-    commentIndex,
-    commentIsLoding,
-  ] = useSpinner();
-
+  const [commentArr, setCommentArr] = useState(
+    state.comment.slice(0, commentIndex)
+  );
   const commentId = useRef(0); //댓글을 수정한다면 사용해야할 id값
   const isUpdate = useRef(false); //댓글을 수정한다면 사용될 flag값
-  //댓글을 map함수돌면서 표시할 comments배열
-  let comments = state.comment.slice(0, commentIndex.current);
-
-  const handleFollow = () => {
-    setScrollY(window.pageYOffset); //window 스크롤 값을 ScrollY에 저장
-  };
-
-  useEffect(() => {
-    const watch = () => {
-      window.addEventListener("scroll", handleFollow);
-    };
-    watch(); //이벤트함수실행
-    let timeId = null;
-    if (scrollY > limitScroll) {
-      commentIsLoding.current = true;
-      timeId = setTimeout(() => {
-        commentIndex.current += 3;
-        commentIsLoding.current = false;
-        setLimitScroll(limitScroll + 300);
-      }, 500);
-    } else {
-      commentIsLoding.current = false;
-    }
-    return () => {
-      window.removeEventListener("scroll", handleFollow); //이벤트함수 삭제
-      clearTimeout(timeId);
-    };
-  });
 
   useEffect(() => {
     dispatch(__getPosts());
@@ -92,7 +62,7 @@ const DetailPage = () => {
       title: state.title,
       name: state.name,
       content: state.content,
-      comment: [...comments],
+      comment: [...commentArr],
     };
     navigate("/editPage", { state: newContent });
   };
@@ -117,10 +87,10 @@ const DetailPage = () => {
     isUpdate.current = false;
   };
 
-  const commentUpdateHandler = (currntPost) => () => {
+  const commentUpdateHandler = (currentPost) => () => {
     if (!window.confirm("해당 댓글을 수정하시겠습니까?")) return;
-    setComment(currntPost.commentContent);
-    const id = currntPost.commentId;
+    setComment(currentPost.commentContent);
+    const id = currentPost.commentId;
     commentId.current = id;
     isUpdate.current = true;
   };
@@ -140,24 +110,29 @@ const DetailPage = () => {
     dispatch(__deleteComment(payload));
   };
 
-  if (isLoading) {
-    return <div>로딩 중....</div>;
-  }
-
-  if (error) {
-    return <div>{error.message}</div>;
-  }
-
-  if (post) {
-    const find = post.find((item) => {
+  useEffect(() => {
+    //받아온 state에서 현재 게시글 정보 찾기
+    let find = post.find((item) => {
       return item.id === state.id;
     });
-    if (find === undefined) return;
-    comments = find.comment.slice(0, commentIndex.current);
-  }
+
+    if (find === undefined) {
+      find = state;
+      //정보를 못찾았다면 useNavigate로 가져온 state로 설정
+    }
+    //commeetArr을 3개씩 제한해서 설정
+    setCommentArr(find.comment.slice(0, commentIndex.current));
+  }, [limitScroll, post]);
+
+  useEffect(() => {
+    dispatch(__getPosts());
+    isUpdate.current = false;
+  }, [dispatch]);
 
   return (
     <div className="inner">
+      {isLoading ? <div>...로딩중</div> : null}
+      {error ? <div>{error.message}</div> : null}
       <WriteBox
         updateHandler={updateHandler}
         deleteHandler={deleteHandler}
@@ -170,7 +145,7 @@ const DetailPage = () => {
         comment={comment}
         setComment={setComment}
         commentHandler={commentHandler}
-        comments={comments}
+        comments={commentArr}
         commentDeleteHandler={commentDeleteHandler}
         commentUpdateHandler={commentUpdateHandler}
       />
