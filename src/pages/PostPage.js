@@ -1,9 +1,14 @@
+
+import { useNavigate,useLocation } from "react-router-dom";
+import { useState } from "react";
+import { useDispatch,useSelector } from "react-redux";
+import { __postPosts } from "../redux/thunk/thunk";
+
 import "../india.css";
-import { useNavigate, useLocation } from "react-router-dom";
-import { useSelector } from 'react-redux';
 
 import Form from '../components/Form';
 import PostButton from '../components/PostButton';
+
 
 const PostPage = () => {
   // useEffect로 success가 true일때 홈으로 보내기

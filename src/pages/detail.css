@@ -1,0 +1,153 @@
+ * {
+  margin: 0;
+  padding: 0;
+}
+
+.inner {
+    width: 1200px;
+    margin: "auto";
+}
+
+/* 스켈레톤 spinner */
+.spinner {
+    position: fixed;
+    bottom: 0px;
+    left: 50%;
+}
+
+/* common */
+textarea {
+    resize: none;
+    font-size: 22px;
+}
+
+button {
+    cursor: pointer;
+    border: 1px solid black;
+    background-color: inherit;
+    width: 100px;
+    height: 50px;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+}
+
+button:hover {
+    color: #6666ff;
+}
+
+/* 홈버튼  Post버튼 */
+.primary_btn {
+    width: 200px;    
+    font-size: 20px;
+    font-weight: 500;
+    background-color: #6666ff;
+    color: white;
+}
+
+.primary_btn:hover {
+    color: white;
+    background-color: #0099FF;
+}
+
+.comment_btn:hover {
+    color: #0099FF;
+}
+
+.comment_btn,
+.primary_btn,
+.nav_btn {
+    float: right;
+}
+
+/* writeBox */
+.writeBox_outer {
+    position: relative;
+    width: 900px;
+    margin: auto;
+    height: 600px;
+    border-radius: 5px;
+    border: 1px solid darkgray;
+}
+
+.writeBox_inner {   
+    background-color: rgb(245, 245, 245);
+    width: 800px;
+    border: 2px solid black;
+    margin: 60px 50px;
+    border-radius: 5px;
+    height: 500px;
+}
+
+/* 제목 작성자 수정하기 삭제하기 */
+.writeBox_nav {
+    width: 750px;
+    margin: 60px auto;
+}
+
+/* 소개글 */
+.inform {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 20px;
+    font-weight: 600px;
+}
+
+/* 글제목 */
+.title {
+    font-size: 32px;
+    font-weight: 700;
+    margin-right: 30px;
+}
+
+/* 글 작성자 */
+.author {
+    font-size: 26px;
+    font-weight: 500;
+}
+
+/* 글 내용 */
+.content {
+    font-size: 26px;
+    width: 750px;
+    height: 300px; 
+}
+
+/* commennt */
+.comment {
+    margin: 150px;
+    
+}
+
+/* 댓글내용 textArea */
+.comment_text {
+    width: 900px;
+    height: 120px;
+}
+
+.post_btn {
+    width: 150px;
+}
+
+.comment_list {
+    padding-left: 0;
+    margin-top: 100px;
+    width: 900px;
+}
+
+/* 댓글 작성된 박스 */
+.comment_li {
+    padding:20px;
+    list-style: none;
+    width: inherit;
+    box-sizing: border-box;
+    border: 2px solid #0099;
+    border-radius: 10px;
+    font-size: 20px;
+    margin-bottom: 30px;
+}
+
+
+

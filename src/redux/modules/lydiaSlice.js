@@ -3,10 +3,9 @@ import { createSlice } from "@reduxjs/toolkit";
 import {
   __getPosts,
   __postPosts,
-  __deletePosts,
+  // __deletePosts,
   __updatePosts,
   __postComment,
-  __updateComment,
   __deleteComment,
 } from "../thunk/thunk";
 
@@ -33,7 +32,6 @@ const lydiaSlice = createSlice({
       state.error = action.payload;
     });
     builder.addCase(__postPosts.fulfilled, (state, action) => {
-      console.log("addCase", action.payload);
       state.post.push(action.payload);
     });
     builder.addCase(__postComment.fulfilled, (state, action) => {

@@ -1,0 +1,27 @@
+const CommentWrite = ({
+  onChangeComment,
+  comment,
+  commentHandler,
+  commentId,
+}) => {
+  return (
+    <div className="comment_box">
+      <div>
+        Comment
+        {commentId.current !== 0 ? (
+          <span>{commentId.current}번글 수정중</span>
+        ) : null}
+      </div>
+      <textarea
+        className="comment_text"
+        onChange={onChangeComment}
+        value={comment}
+      ></textarea>
+      <button onClick={commentHandler} className="primary_btn post_btn">
+        POST
+      </button>
+    </div>
+  );
+};
+
+export default CommentWrite;
