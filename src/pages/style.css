@@ -1,0 +1,286 @@
+@charset "utf-8";
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+.loading{
+  width: 400px;
+  height: 400px;
+  margin: auto;
+  padding: 100px 0;
+}
+
+
+.inner {
+  width: 100%;
+  margin: auto;
+  position: relative;
+}
+.headerwrap .bgcolour {
+  position: absolute;
+  width: 100%;
+  height: 695px;
+  background-image: linear-gradient(316deg, #33cc99 0%, #0099ff 100%);
+  transform: skew(0, -15deg);
+  left: 0;
+  top: -260px;
+  z-index: -9999;
+}
+.header {
+  width: 100%;
+  height: 65px;
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 40px;
+}
+
+.header .logo a {
+  display: block;
+  width: 150px;
+  height: 65px;
+  background-image: url(../../public/image/LOGO_INVERT.png);
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  text-indent: -9999px;
+}
+.diary {
+  border: 1px solid white;
+  border-radius: 5px;
+  width: 140px;
+  text-align: center;
+  height: 40px;
+  font-size: 18px;
+  line-height: 20px;
+  color: white;
+  background: transparent;
+  font-family: 'Hahmlet', serif;
+}
+.diary:hover {
+  color: #0099ff;
+  background-color: white;
+  border: 0 none;
+}
+
+.heroside {
+  width: 1200px;
+  height: 700px;
+  margin: auto;
+  position: relative;
+}
+
+.hero_text {
+  padding: 170px 0;
+  color: white;
+}
+
+.hero_text h3 {
+  font-size: 56px;
+  line-height: 81px;
+  margin-bottom: 56px;
+}
+.hero_text h5 {
+  font-size: 20px;
+  line-height: 29px;
+  font-weight: normal;
+  margin-bottom: 24px;
+}
+
+.hero_image1{
+  width: 600px;
+  height: 600px;
+  position: absolute;
+  top: -50px;
+  left: 470px;
+}
+.hero_image2{
+  width: 450px;
+  height: 450px;
+  position: absolute;
+  top: 300px;
+  left: 800px;
+  z-index: -2;
+}
+
+.section1_title{
+  margin-top: 100px;
+  text-align: center;
+}
+
+.section1_title h3{
+  font-weight: normal;
+  font-size: 32px;
+  line-height: 46px;
+  margin-bottom: 24px;
+}
+
+.section1_title p{
+  font-size: 18px;
+  line-height: 26px;
+}
+
+.section1_card{
+  display: flex;
+  width: 1200px;
+  margin: 50px auto;
+  gap: 30px;
+}
+
+.card{
+  display: flex;
+}
+
+.card_wrap{
+  border: 1px solid #D8DDE6;
+  border-radius: 5px;
+  width: 270px;
+  height: 430px;
+  overflow: hidden;
+  gap: 20px;
+}
+
+.card_img .img{
+  width: 270px;
+  height: 270px;
+  background: #000;
+  
+}
+
+.card_body{
+  padding: 24px;
+}
+
+.card_body h4{
+  font-size: 20px;
+  line-height: 28px;
+  font-weight: normal;
+  margin-bottom: 70px;
+}
+
+.card_body p{
+  cursor: pointer;
+  font-size: 14px;
+  line-height: 20px;
+}
+.card_body p:hover{
+  color: #C1C7D4
+}
+
+.section2{
+  height: 670px;
+  background: #ECEFF5;
+}
+.section2_title{
+  text-align: center;
+  margin-top: 100px;
+}
+
+.section2_title h3{
+  font-weight: normal;
+  font-size: 32px;
+  line-height: 46px;
+  margin-bottom: 24px;
+}
+
+.section2_title p{
+  font-size: 18px;
+  line-height: 26px;
+  margin-bottom: 70px;
+}
+
+
+
+
+.section3{
+  height: 670px;
+  background: #ECEFF5;
+}
+.section3_title{
+  text-align: center;
+  margin-top: 100px;
+}
+
+.section3_title h3{
+  font-weight: normal;
+  font-size: 32px;
+  line-height: 46px;
+  margin-bottom: 24px;
+}
+
+.section3_title p{
+  font-size: 18px;
+  line-height: 26px;
+  margin-bottom: 70px;
+}
+
+
+
+
+
+
+
+
+#footerwrap {
+  height: 600px;
+  color: #6666ff;
+}
+.footer {
+  width: 1260px;
+  margin: 0 auto;
+}
+#footerwrap .logo a {
+  float: right;
+  display: block;
+  width: 200px;
+  height: 200px;
+  background-image: url(../../public/image/LOGO_FOOTER.png);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  text-indent: -9999px;
+  margin-top: 100px;
+  margin-right: 85px;
+}
+.footerend{
+  position: relative;
+}
+.footerend ul{
+  float: left;
+  margin: 40px;
+}
+.footerend h4{
+  font-size: 16px;
+  line-height: 23px;
+  font-weight: bold;
+  margin-top: 100px;
+}
+
+.footerend li a{
+  font-size: 16px;
+  line-height: 38px;
+}
+
+.footerend::after{
+  content:"";
+  display: block;
+  width: 1260px;
+  height: 2px;
+  background-color: #0099FF;
+  margin: 0 auto;
+  top: 423px;
+  position: absolute;
+}
+
+.footerend_1{
+  position: absolute;
+  bottom: 90px;
+}
+.footerend_1 a{
+  margin-right: 30px;
+  font-size: 14px;
+  color: #6666ff;
+}
