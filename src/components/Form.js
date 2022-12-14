@@ -42,15 +42,17 @@ export default function Form({ state }) {
           </div>
         </form>
         <form className='form-btm'>
-          <label htmlFor="content">내용</label>
-          <textarea
-            rows="20" cols="50"
-            type="text"
-            id="content"
-            value={content}
-            placeholder={state ? state.content : "내용을 입력해주세요"}
-            onChange={(e) => handleChangeInputField(e)}
-          />
+          <div>
+            <label htmlFor="content">내용</label>
+            <textarea
+              rows="20" cols="100"
+              type="text"
+              id="content"
+              value={content}
+              placeholder={state ? state.content : "내용을 입력해주세요"}
+              onChange={(e) => handleChangeInputField(e)}
+            />
+          </div>
         </form>
       </div>
     </>
