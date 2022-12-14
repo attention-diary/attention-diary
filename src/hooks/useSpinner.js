@@ -34,14 +34,7 @@ const useSpinner = () => {
       clearTimeout(timeId);
     };
   });
-  return [
-    limitScroll,
-    setLimitScroll,
-    scrollY,
-    setScrollY,
-    commentIndex,
-    commentIsLoding,
-  ];
+  return [limitScroll, commentIndex, commentIsLoding];
 };
 
 export default useSpinner;

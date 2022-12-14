@@ -1,7 +1,17 @@
-const CommentWrite = ({ onChangeComment, comment, commentHandler }) => {
+const CommentWrite = ({
+  onChangeComment,
+  comment,
+  commentHandler,
+  commentId,
+}) => {
   return (
     <div className="comment_box">
-      <div>Comment</div>
+      <div>
+        Comment
+        {commentId.current !== 0 ? (
+          <span>{commentId.current}번글 수정중</span>
+        ) : null}
+      </div>
       <textarea
         className="comment_text"
         onChange={onChangeComment}

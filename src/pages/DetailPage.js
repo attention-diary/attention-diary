@@ -17,7 +17,6 @@ import {
 } from "../redux/thunk/thunk";
 
 import useSpinner from "../hooks/useSpinner";
-// import useComment from "../hooks/useComment";
 
 const DetailPage = () => {
   const dispatch = useDispatch();
@@ -33,6 +32,25 @@ const DetailPage = () => {
   );
   const commentId = useRef(0); //댓글을 수정한다면 사용해야할 id값
   const isUpdate = useRef(false); //댓글을 수정한다면 사용될 flag값
+
+  useEffect(() => {
+    dispatch(__getPosts());
+    isUpdate.current = false;
+  }, [dispatch]);
+
+  useEffect(() => {
+    //받아온 state에서 현재 게시글 정보 찾기
+    let find = post.find((item) => {
+      return item.id === state.id;
+    });
+
+    if (find === undefined) {
+      find = state;
+      //정보를 못찾았다면 useNavigate로 가져온 state로 설정
+    }
+    //commeetArr을 3개씩 제한해서 설정
+    setCommentArr(find.comment.slice(0, commentIndex.current));
+  }, [limitScroll, post]);
 
   useEffect(() => {
     dispatch(__getPosts());
@@ -72,6 +90,7 @@ const DetailPage = () => {
   };
 
   const commentHandler = (e) => {
+    console.log("햔재 게시글들 정보", post);
     if (comment.trim() === "") {
       alert("댓글의 내용을 입력해주세요");
       return;
@@ -110,25 +129,6 @@ const DetailPage = () => {
     dispatch(__deleteComment(payload));
   };
 
-  useEffect(() => {
-    //받아온 state에서 현재 게시글 정보 찾기
-    let find = post.find((item) => {
-      return item.id === state.id;
-    });
-
-    if (find === undefined) {
-      find = state;
-      //정보를 못찾았다면 useNavigate로 가져온 state로 설정
-    }
-    //commeetArr을 3개씩 제한해서 설정
-    setCommentArr(find.comment.slice(0, commentIndex.current));
-  }, [limitScroll, post]);
-
-  useEffect(() => {
-    dispatch(__getPosts());
-    isUpdate.current = false;
-  }, [dispatch]);
-
   return (
     <div className="inner">
       {isLoading ? <div>...로딩중</div> : null}
@@ -139,10 +139,10 @@ const DetailPage = () => {
         post={state}
         askNavigate={askNavigate}
       />
-
       <Comment
         onChangeComment={onChangeComment}
         comment={comment}
+        commentId={commentId}
         setComment={setComment}
         commentHandler={commentHandler}
         comments={commentArr}

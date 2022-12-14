@@ -38,7 +38,6 @@ export const __updatePosts = createAsyncThunk(
       const data = await defaultInstance.put(`/${payload.id}`, payload);
       return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {
-      alert("서버요청중 오류발생!");
       return thunkAPI.rejectWithValue(error);
     }
   }
@@ -90,14 +89,20 @@ export const __postComment = createAsyncThunk(
         };
       } else {
         //새로들어온 댓글이므로 id의 최댓값을 찾는 로직
-        let maxNum = 1;
-        if (newPost !== undefined && newPost.comment.length >= 1) {
-          maxNum = newPost.comment.reduce((max, curr) =>
-            max > curr ? max : curr
-          );
+        //현재 게시글의 댓글배열에서 id의 최대값을 찾음
+        //기존에 댓글이 없다면  1로 설정
+        let maxNum = 0;
+        if (newPost === undefined) return alert("댓글 수정 중 오류");
+        if (newPost.comment.length > 0) {
+          const commentIdArr = newPost.comment.map((item) => {
+            return item.commentId;
+          });
+          maxNum = Math.max(...commentIdArr);
         }
+
         newComment = {
-          commentId: maxNum.commentId === undefined ? 1 : maxNum.commentId + 1,
+          //최대값 id를 찾았다면 + 1 아니라면 id는 1이 된다
+          commentId: maxNum + 1,
           commentContent: payload.commentContent,
         };
         //해당게시글의 정보의 배열부분만 추가된 댓글을 반영해서 교체

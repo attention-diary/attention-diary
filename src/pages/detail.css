@@ -1,3 +1,7 @@
+ * {
+  margin: 0;
+  padding: 0;
+}
 
 .inner {
     width: 1200px;
@@ -113,7 +117,8 @@ button:hover {
 
 /* commennt */
 .comment {
-    margin-top: 150px;
+    margin: 150px;
+    
 }
 
 /* 댓글내용 textArea */

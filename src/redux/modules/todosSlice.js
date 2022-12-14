@@ -3,10 +3,9 @@ import { createSlice } from "@reduxjs/toolkit";
 import {
   __getPosts,
   __postPosts,
-  __deletePosts,
+  // __deletePosts,
   __updatePosts,
   __postComment,
-  __updateComment,
   __deleteComment,
 } from "../thunk/thunk";
 
