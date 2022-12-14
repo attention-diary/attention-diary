@@ -82,12 +82,14 @@
   font-size: 56px;
   line-height: 81px;
   margin-bottom: 56px;
+  color: white;
 }
 .hero_text h5 {
   font-size: 20px;
   line-height: 29px;
   font-weight: normal;
   margin-bottom: 24px;
+  color: white;
 }
 
 .hero_image1{

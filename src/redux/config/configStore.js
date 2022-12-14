@@ -1,10 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
 
 import indiaReducer from "../modules/indiaSlice";
-import lydiaReducer from "../modules/lydiaSlice";
+import post from "../modules/lydiaSlice";
 
 const store = configureStore({
-  reducer: { indiaReducer, lydiaReducer },
+  reducer: { indiaReducer, post },
 });
 
 export default store;
