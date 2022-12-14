@@ -5,6 +5,7 @@ import WriteBox from "../components/WriteBox";
 import Comment from "../components/comment/Comment";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Spinner from "react-bootstrap/Spinner";
+import useSpinner from "../hooks/useSpinner";
 
 import "./detail.css";
 
@@ -16,7 +17,6 @@ import {
   __deleteComment,
 } from "../redux/thunk/thunk";
 
-import useSpinner from "../hooks/useSpinner";
 
 const DetailPage = () => {
   const dispatch = useDispatch();
@@ -27,11 +27,25 @@ const DetailPage = () => {
   const [comment, setComment] = useState("");
   const [limitScroll, commentIndex, commentIsLoding] = useSpinner();
 
+
   const [commentArr, setCommentArr] = useState(
     state.comment.slice(0, commentIndex)
   );
   const commentId = useRef(0); //댓글을 수정한다면 사용해야할 id값
   const isUpdate = useRef(false); //댓글을 수정한다면 사용될 flag값
+
+  // india
+  const editedPost = useSelector(state => state.post.post);
+  const currPost = editedPost.find(post => post.id === state.id);
+
+  const [inputs, setInputs] = useState({
+    title: state.title,
+    content: state.content,
+    name: state.name,
+  });
+
+  const { title, content, name } = inputs;
+
 
   useEffect(() => {
     dispatch(__getPosts());
