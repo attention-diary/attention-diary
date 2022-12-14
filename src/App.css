@@ -7,19 +7,6 @@ body {
   position: relative;
 }
 
-.inner {
-  width: 900px;
-  margin: auto;
-}
-
-
-.header {
-  height: 200px;
-  justify-content: center;
-  align-items: center;
-  display: flex;
-}
-
 .header > li {
   cursor: pointer;
   list-style: none;
