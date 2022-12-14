@@ -3,12 +3,13 @@ const CommentWrite = ({
   comment,
   commentHandler,
   commentId,
+  isUpdate,
 }) => {
   return (
     <div className="comment_box">
       <div>
         Comment
-        {commentId.current !== 0 ? (
+        {commentId.current !== 0 && isUpdate.current ? (
           <span>{commentId.current}번글 수정중</span>
         ) : null}
       </div>
