@@ -10,7 +10,6 @@ import {
   __getPosts,
   __deleteComment,
 } from "../redux/thunk/thunk";
-import "./write.css";
 
 const DetailPage = () => {
   // const { id } = useParams();
@@ -21,6 +20,10 @@ const DetailPage = () => {
   const [comment, setComment] = useState("");
   //댓글을 map함수돌면서 표시할 comments배열
   let comments = state.comment;
+
+  // india
+  const editedPost = useSelector(state => state.post.post);
+  const currPost = editedPost.find(post => post.id === state.id);
 
   const [inputs, setInputs] = useState({
     title: state.title,
@@ -75,25 +78,25 @@ const DetailPage = () => {
 
   const commentUpdateOrDeleteHandler =
     (currntPost, isUpdate = false) =>
-    () => {
-      if (isUpdate) {
-        if (!window.confirm("해당 댓글을 수정하시겠습니까?")) return;
-        setComment(currntPost.commentContent);
-      }
-      //state에 있는 데이터중애 현재페이지의 있는데이터를 가져오기
-      console.log(post);
-      const currentData = post.filter((item) => {
-        return state.id === item.id;
-      });
-      //현재 데이터에서 삭제할려는 comment객체를 걸러주기
-      const commentArr = currentData[0].comment.filter((item) => {
-        return currntPost.commentId !== item.commentId;
-      });
-      //현재데이터에서 걸러진comment 배열을 담아서 payload로 보내줌
-      const payload = { ...currentData[0], comment: commentArr };
+      () => {
+        if (isUpdate) {
+          if (!window.confirm("해당 댓글을 수정하시겠습니까?")) return;
+          setComment(currntPost.commentContent);
+        }
+        //state에 있는 데이터중애 현재페이지의 있는데이터를 가져오기
+        console.log(post);
+        const currentData = post.filter((item) => {
+          return state.id === item.id;
+        });
+        //현재 데이터에서 삭제할려는 comment객체를 걸러주기
+        const commentArr = currentData[0].comment.filter((item) => {
+          return currntPost.commentId !== item.commentId;
+        });
+        //현재데이터에서 걸러진comment 배열을 담아서 payload로 보내줌
+        const payload = { ...currentData[0], comment: commentArr };
 
-      dispatch(__deleteComment(payload));
-    };
+        dispatch(__deleteComment(payload));
+      };
 
   if (isLoading) {
     return <div>로딩 중....</div>;
@@ -120,7 +123,7 @@ const DetailPage = () => {
           <input
             type="text"
             name="title"
-            value={title}
+            value={currPost.title}
             onChange={onChangeTodo}
             readOnly
           />
@@ -128,7 +131,7 @@ const DetailPage = () => {
           <input
             type="text"
             name="name"
-            value={name}
+            value={currPost.name}
             onChange={onChangeTodo}
             readOnly
           />
@@ -136,7 +139,7 @@ const DetailPage = () => {
         <label>내용:</label>
         <textarea
           name="content"
-          value={content}
+          value={currPost.content}
           onChange={onChangeTodo}
           readOnly
         ></textarea>

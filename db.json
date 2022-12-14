@@ -2,9 +2,30 @@
   "post": [
     {
       "id": 1,
-      "title": "",
-      "content": "",
+      "title": "weqewqewqewq",
+      "content": "ewqewqewqew",
       "comment": []
+    },
+    {
+      "title": "ㄷㅂㅈㅂㄷㅈ",
+      "content": "ㅂㅈㄸㅈㅂㄷㅈㅂ",
+      "comment": [],
+      "id": 2
+    },
+    {
+      "id": 4,
+      "title": "수정정완료",
+      "content": "최종수정햇습니다",
+      "comment": [
+        {
+          "commentId": 1,
+          "commentContent": "weqewq"
+        },
+        {
+          "commentId": 2,
+          "commentContent": "ewqewq"
+        }
+      ]
     }
   ]
 }

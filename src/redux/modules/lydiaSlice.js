@@ -16,7 +16,7 @@ let initialState = {
   error: null,
 };
 
-const post = createSlice({
+const lydiaSlice = createSlice({
   name: "post",
   initialState: initialState,
   reducers: {},
@@ -51,6 +51,8 @@ const post = createSlice({
   },
 });
 
-export const {} = post.actions;
+export const { } = lydiaSlice.actions;
 
-export default post.reducer;
+const lydiaReducer = lydiaSlice.reducer;
+
+export default lydiaReducer;

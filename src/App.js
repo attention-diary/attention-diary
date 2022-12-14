@@ -1,6 +1,6 @@
 import Router from "./route/Router";
-import "./App.css";
-import "./index.css";
+
+import "./index.css"; // lydia
 
 function App() {
   return <Router />;

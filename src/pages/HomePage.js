@@ -1,6 +1,12 @@
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+
+// india
+import { fetchGetPost } from '../redux/thunk/indiaThunk';
+import List from '../components/List';
+
+// lydia
 import { __getPosts } from "../redux/thunk/thunk";
 import "./reset.css"
 import "./style.css"
@@ -15,14 +21,16 @@ import { loading } from '../assets';
 const HomePage = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { post, isLoading, error } = useSelector((state) => state.post);
+
+  const { post } = useSelector((state) => state.indiaReducer);
+  const { isLoading, error } = useSelector((state) => state.post);
 
   useEffect(() => {
-    dispatch(__getPosts());
+    dispatch(fetchGetPost());
   }, [dispatch]);
 
   const goWrite = (e) => {
-    navigate("/postPage");
+    navigate("/postPage", { state: post });
   };
 
   const goDetailHandler = (post) => () => {
@@ -40,17 +48,16 @@ const HomePage = () => {
   }
 
   return (
-    <div className="inner">
-        <div class="headerwrap">
-          <div className="bgcolour"></div>
-          <div className="header">
-            <h1 className="logo">
-              <a href="">Logo</a>
-            </h1>
-            <button onClick={goWrite} className="diary">기록하기</button>
-          </div>
+    <>
+      <div class="headerwrap">
+        <div className="bgcolour"></div>
+        <div className="header">
+          <h1 className="logo">
+            <a href="">Logo</a>
+          </h1>
+          <button onClick={goWrite} className="diary">기록하기</button>
         </div>
-      
+      </div>
       <div className="heroside">
         <div className="hero_text">
           <h3>
@@ -81,13 +88,13 @@ const HomePage = () => {
         </div>
         <div className="section1_card">
           <div className="card_wrap">
-              <div className="card_img">
-                <div className="img"></div>
-              </div>
-              <div className="card_body">
-                <h4>title</h4>
-                <p onClick={goDetailHandler(post)} key={post.id}>읽어보기 ></p>
-              </div>
+            <div className="card_img">
+              <div className="img"></div>
+            </div>
+            <div className="card_body">
+              <h4>title</h4>
+              <p onClick={goDetailHandler(post)} key={post.id}>{`읽어보기 >`}</p>
+            </div>
           </div>
         </div>
       </div>
@@ -105,48 +112,52 @@ const HomePage = () => {
           <p>가장 많은 관심을 받고 있는 다이어리</p>
         </div>
       </div>
-
-    <footer id="footerwrap">
-        <div class="footer">
-            <div class="logo">
-                <h1><a href="#!">LOGO</a></h1>
-            </div>
-            <div class="footerend">
-                <ul class="footer1 clearfix">
-                    <h4>Product</h4>
-                    <li><a href="">EMPLOYEE DATABASE</a></li>
-                    <li><a href="">PAYROLL</a></li>
-                    <li><a href="">ABSENCES</a></li>
-                    <li><a href="">SHIFT PLANNER</a></li>
-                    <li><a href="">RECRUITING</a></li>
-                </ul>
-                <ul class="footer2 clearfix">
-                    <h4>Information</h4>
-                    <li><a href="">FAQ</a></li>
-                    <li><a href="">BLOG</a></li>
-                    <li><a href="">SUPPORT</a></li>
-                </ul>
-                <ul class="footer3 clearfix">
-                    <h4>Company</h4>
-                    <li><a href="">ABOUT US</a></li>
-                    <li><a href="">CAREERS</a></li>
-                    <li><a href="">CONTACT US</a></li>
-                </ul>
-            </div>
-            <div className="footerend_1">
-              <a herf="">Terms</a>
-              <a herf="">Privacy</a>
-              <a herf="">Cookies</a>
-            </div>
-            <div className="footerend_2">
-              {/* <FontAwesomeIcon icon="faFigma" />
-              <FontAwesomeIcon icon="faGithub" /> */}
-            </div>
+      <div className='carousel-container'>
+        <div className='carousel-title'>
+          <h2>둘러보기</h2>
+          <p>다른 사람들의 오늘을 구경해보세요 !</p>
         </div>
-    </footer>
-
-    </div>
-    
+        {post ? <List posts={post} /> : null}
+      </div>
+      <footer id="footerwrap">
+        <div class="footer">
+          <div class="logo">
+            <h1><a href="#!">LOGO</a></h1>
+          </div>
+          <div class="footerend">
+            <ul class="footer1 clearfix">
+              <h4>Product</h4>
+              <li><a href="">EMPLOYEE DATABASE</a></li>
+              <li><a href="">PAYROLL</a></li>
+              <li><a href="">ABSENCES</a></li>
+              <li><a href="">SHIFT PLANNER</a></li>
+              <li><a href="">RECRUITING</a></li>
+            </ul>
+            <ul class="footer2 clearfix">
+              <h4>Information</h4>
+              <li><a href="">FAQ</a></li>
+              <li><a href="">BLOG</a></li>
+              <li><a href="">SUPPORT</a></li>
+            </ul>
+            <ul class="footer3 clearfix">
+              <h4>Company</h4>
+              <li><a href="">ABOUT US</a></li>
+              <li><a href="">CAREERS</a></li>
+              <li><a href="">CONTACT US</a></li>
+            </ul>
+          </div>
+          <div className="footerend_1">
+            <a herf="">Terms</a>
+            <a herf="">Privacy</a>
+            <a herf="">Cookies</a>
+          </div>
+          <div className="footerend_2">
+            {/* <FontAwesomeIcon icon="faFigma" />
+              <FontAwesomeIcon icon="faGithub" /> */}
+          </div>
+        </div>
+      </footer>
+    </>
   );
 };
 

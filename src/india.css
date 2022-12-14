@@ -1,0 +1,177 @@
+@import url('https://fonts.googleapis.com/css2?family=Hahmlet:wght@400;500;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  border: none;
+  list-style: none;
+  font-family: 'Hahmlet', serif;
+  color: #494949;
+}
+
+.form-wrapper {
+  width: 70%;
+  margin: 100px auto 100px auto;
+  padding: 20px;
+  max-width: 1200px;
+  border: 1px solid #DEDEDE;
+  text-align: center;
+}
+
+.form-title {
+  font-size: 20px;
+}
+
+.form-box {
+  display: flex;
+  flex-direction: column;
+  font-size: 16px;
+  background-color: #ECEFF5;
+  margin-top: 20px;
+  text-align: start;
+  padding: 40px;
+}
+
+.form-top {
+  display: flex;
+  margin-bottom: 50px;
+}
+
+.form-btm {
+  display: flex;
+}
+
+.form-top input {
+  border: 1px solid #7F8492;
+  margin-top: 16px;
+  margin-right: 170px;
+  width: 70%;
+  padding: 16px 10px;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.form-btm textarea {
+  width: 100%;
+  height: 390px;
+  font-size: 16px;
+  margin-top: 16px;
+  padding: 16px 10px;
+  border: 1px solid #7F8492;
+  border-radius: 4px;
+}
+
+.form-btm textarea::placeholder {
+  font-size: 16px;
+}
+
+button {
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.btn-secondary {
+  padding: 14px 36px;
+  margin-right: 16px;
+  margin-top: 20px;
+  border-radius: 8px;
+  background-color: #6666FF;
+}
+
+.btn-secondary:hover {
+  background-color: #0099FF;
+  color: #fff;
+}
+
+.carousel-container {
+  padding: 20px;
+  text-align: center;
+  background-color: #ECEFF5;
+  overflow: scroll;
+  position: relative;
+}
+
+.carousel-container::-webkit-scrollbar {
+  display: none;
+}
+
+.carousel-title {
+  position: sticky;
+  top: 0;
+  left: 30%;
+  margin: 0 30%;
+}
+
+.carousel-title h2 {
+  font-size: 32px;
+  margin-bottom: 24px;
+}
+
+.carousel-title p {
+  font-size: 18px;
+  margin-bottom: 64px;
+}
+
+.carousel {
+  display: flex;
+  transition: transform .5s ease-in-out;
+}
+
+.carousel li {
+  margin-right: 28px;
+  padding: 28px;
+  background-color: #fff;
+  box-shadow: 1px 0px 5px 0px #D8DDE6;
+}
+
+.carousel div {
+  width: 200px;
+  height: 160px;
+  text-align: start;
+  position: relative;
+}
+
+.detail-btn {
+  background-color: #fff;
+  color: #494949;
+  font-size: 14px;
+  position: absolute;
+  bottom: 0;
+}
+
+
+.carousel-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.right-btn {
+  position: fixed;
+  right: 20px;
+  z-index: 1;
+  background-color: #6666FF;
+  width: 50px;
+  height: 50px;
+  border-radius: 25px;
+}
+
+.left-btn {
+  position: fixed;
+  left: 20px;
+  z-index: 1;
+  background-color: #6666FF;
+  width: 50px;
+  height: 50px;
+  border-radius: 25px;
+}
+
+.right-btn:hover {
+  background-color: #0099FF;
+}
+
+.left-btn:hover {
+  background-color: #0099FF;
+}
