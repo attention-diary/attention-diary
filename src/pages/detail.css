@@ -1,12 +1,31 @@
  * {
   margin: 0;
   padding: 0;
+  color: #494949;
 }
 
 .inner {
-    width: 1200px;
+    width: 100%;
     margin: "auto";
 }
+
+.headerwrap_detail{
+    background: #373737;
+    margin-bottom: 100px;
+    box-shadow: 0 1px 5px 1px rgb(150, 150, 150);
+}
+
+.bgcolour3 {
+    position: absolute;
+    width: 100%;
+    height: 500px;
+    background-image: linear-gradient(316deg, #33cc99 0%, #0099ff 100%);
+    transform: skew(0, 10deg);
+    left: 0;
+    top: -260px;
+    z-index: -9999;
+  }
+  
 
 /* 스켈레톤 spinner */
 .spinner {
@@ -38,11 +57,17 @@ button:hover {
 
 /* 홈버튼  Post버튼 */
 .primary_btn {
-    width: 200px;    
-    font-size: 20px;
-    font-weight: 500;
-    background-color: #6666ff;
-    color: white;
+    border: 1px solid #6666ff;
+    border-radius: 5px;
+    width: 140px;
+    text-align: center;
+    height: 40px;
+    font-size: 18px;
+    line-height: 20px;
+    color: #6666ff;
+    background: transparent;
+    font-family: 'Hahmlet', serif;
+  
 }
 
 .primary_btn:hover {
@@ -67,22 +92,36 @@ button:hover {
     margin: auto;
     height: 600px;
     border-radius: 5px;
-    border: 1px solid darkgray;
+    border: 1px solid #6666ff86;
 }
 
 .writeBox_inner {   
-    background-color: rgb(245, 245, 245);
+    background-color: #0099ff36;
     width: 800px;
-    border: 2px solid black;
+    border: 1px solid #6666ff3a;
     margin: 60px 50px;
     border-radius: 5px;
     height: 500px;
+}
+
+.edit,.delete{
+    color: #494949;
+    font-size: 13px;
 }
 
 /* 제목 작성자 수정하기 삭제하기 */
 .writeBox_nav {
     width: 750px;
     margin: 60px auto;
+}
+.writeBox_nav .title{
+    font-size: 26px;
+    font-weight: 500;
+    margin-right: 30px;
+}
+.writeBox_nav .author{
+    font-size: 16px;
+    font-weight: normal;
 }
 
 /* 소개글 */
@@ -95,24 +134,14 @@ button:hover {
     font-weight: 600px;
 }
 
-/* 글제목 */
-.title {
-    font-size: 32px;
-    font-weight: 700;
-    margin-right: 30px;
-}
-
-/* 글 작성자 */
-.author {
-    font-size: 26px;
-    font-weight: 500;
-}
 
 /* 글 내용 */
 .content {
-    font-size: 26px;
+    font-size: 16px;
     width: 750px;
     height: 300px; 
+    padding: 15px;
+    border-radius: 5px;
 }
 
 /* commennt */
@@ -120,21 +149,28 @@ button:hover {
     margin: 150px;
     
 }
+.comment_box{
+    width: 900px;
+    height: 220px;
+    margin: auto;
+}
 
 /* 댓글내용 textArea */
 .comment_text {
     width: 900px;
     height: 120px;
+    border: 1px solid #494949;
+    border-radius: 5px;
+    font-size: 16px;
+    margin: auto;
 }
 
-.post_btn {
-    width: 150px;
-}
 
 .comment_list {
     padding-left: 0;
     margin-top: 100px;
     width: 900px;
+    margin: auto;
 }
 
 /* 댓글 작성된 박스 */
@@ -143,10 +179,14 @@ button:hover {
     list-style: none;
     width: inherit;
     box-sizing: border-box;
-    border: 2px solid #0099;
+    border: 1px solid #6666ff;
     border-radius: 10px;
-    font-size: 20px;
-    margin-bottom: 30px;
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+.comment_btn{
+    color: #494949;
+    font-size: 13px;
 }
 
 

@@ -61,7 +61,7 @@ export default function List({ posts }) {
                   className='detail-btn'
                   onClick={() => { navigate(`/detailPage/${post.id}`, { state: post }) }}
                 >
-                  {` See More >`}
+                  {` 읽어보기 >`}
                 </button>
               </div>
             </li>

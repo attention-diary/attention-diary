@@ -14,15 +14,15 @@ const CommentList = ({
               Comment{ele.commentId} <br></br> {ele.commentContent}
               <button
                 className="comment_btn"
-                onClick={commentUpdateHandler(ele)}
+                onClick={commentDeleteHandler(ele)}
               >
-                수정
+                삭제하기
               </button>
               <button
                 className="comment_btn"
-                onClick={commentDeleteHandler(ele)}
+                onClick={commentUpdateHandler(ele)}
               >
-                삭제
+                수정하기
               </button>
             </li>
           );

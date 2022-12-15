@@ -1,15 +1,14 @@
 const WriteBox = ({ updateHandler, deleteHandler, post, askNavigate }) => {
   return (
     <div className="writeBox_outer">
-      <p className="inform">관심받고 싶은 오늘의 기록입니다</p>
+      <p className="inform">관심 받고 싶은 오늘의 기록입니다</p>
       <div className="writeBox_inner">
         <div className="writeBox_nav">
           <span className="title">{post.title}</span>
           <span className="author">{post.name}</span>
           <div className="nav_btn">
-            <button onClick={updateHandler}>EDIT</button>
-            <span>&#62;</span>
-            <button onClick={deleteHandler}> DELETE</button>
+            <button onClick={updateHandler} className="edit">수정하기</button>
+            <button onClick={deleteHandler} className="delete"> 삭제하기</button>
           </div>
           <textarea
             className="content"

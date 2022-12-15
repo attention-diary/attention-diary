@@ -147,6 +147,13 @@ const DetailPage = () => {
     <div className="inner">
       {isLoading ? <div>...로딩중</div> : null}
       {error ? <div>{error.message}</div> : null}
+      <div class="headerwrap_detail">
+        <div className="header">
+          <h1 className="logo">
+            <a href="">Logo</a>
+          </h1>
+        </div>
+      </div>
       <WriteBox
         updateHandler={updateHandler}
         deleteHandler={deleteHandler}
@@ -169,6 +176,7 @@ const DetailPage = () => {
         <Spinner className="spinner" style={{ display: "none" }} />
       )}
     </div>
+
   );
 };
 

@@ -4,10 +4,13 @@ import { useState } from "react";
 import { useDispatch,useSelector } from "react-redux";
 import { __postPosts } from "../redux/thunk/thunk";
 
-import "../india.css";
+import "../pages/india.css";
 
 import Form from '../components/Form';
 import PostButton from '../components/PostButton';
+import Lottie from 'lottie-react';
+import { posting_image } from '../assets';
+
 
 
 const PostPage = () => {
@@ -18,22 +21,39 @@ const PostPage = () => {
   const editedPost = useSelector(state => state.indiaReducer);
 
   return (
-    <div className='form-wrapper'>
-      <h2>관심이 필요한 오늘을 기록해주세요</h2>
-      <Form />
-      <button
-        className='btn-secondary'
-        onClick={() => {
-          navigate(-1);
-        }}
-      >
-        이전으로
-      </button>
-      <PostButton
-        editedPost={editedPost}
-        currPost={state}
-      />
-    </div>
+    <> 
+      <div class="headerwrap_post">
+        <div className="header">
+          <h1 className="logo_post">
+            <a href="/">Logo</a>
+          </h1>
+        </div>
+        <div className="posting_image">
+            <Lottie animationData={posting_image} />
+        </div>
+      </div>
+
+
+      <div className='form-wrapper'>
+        <div class="post_form">
+          <h2>관심이 필요한 오늘을 기록해주세요</h2>
+          <Form />
+          <button
+            className='btn-secondary'
+            onClick={() => {
+              navigate(-1);
+            }}
+          >
+            이전으로
+          </button>
+          <PostButton
+            editedPost={editedPost}
+            currPost={state}
+          />
+        </div>
+      </div>
+      <div className="bg"></div>
+    </>
   );
 };
 

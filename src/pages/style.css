@@ -29,6 +29,7 @@
   top: -260px;
   z-index: -9999;
 }
+
 .header {
   width: 100%;
   height: 65px;
@@ -220,25 +221,37 @@
 }
 
 
-
-
-
-
-
-
 #footerwrap {
   height: 600px;
-  color: #6666ff;
+  position: relative;
+  /* overflow: hidden; */
+  
 }
+
+.bgcolour2{
+  position: absolute;
+  width: 100%;
+  height: 537px;
+  background-image: linear-gradient(316deg, #33CC99 0%, #6666FF 100%);
+  overflow: hidden;
+  transform: skew(0,7deg) rotate3d(4, 12, 2, 360deg);
+  left: 0;
+  top: -25px;
+  z-index: -9999;
+}
+
 .footer {
   width: 1260px;
+  height: 600px;
+  overflow: hidden;
   margin: 0 auto;
+  /* background: #000; */
 }
 #footerwrap .logo a {
   float: right;
   display: block;
-  width: 200px;
-  height: 200px;
+  width: 250px;
+  height: 250px;
   background-image: url(../../public/image/LOGO_FOOTER.png);
   background-size: cover;
   background-position: center;
@@ -259,11 +272,16 @@
   line-height: 23px;
   font-weight: bold;
   margin-top: 100px;
+  color: white;
 }
 
 .footerend li a{
-  font-size: 16px;
+  font-size: 14px;
   line-height: 38px;
+}
+
+.footerend li a:hover{
+  color: white;
 }
 
 .footerend::after{
@@ -271,7 +289,7 @@
   display: block;
   width: 1260px;
   height: 2px;
-  background-color: #0099FF;
+  background-color: white;
   margin: 0 auto;
   top: 423px;
   position: absolute;
@@ -281,8 +299,44 @@
   position: absolute;
   bottom: 90px;
 }
-.footerend_1 a{
+.footerend_1 li{
+  float: left;
   margin-right: 30px;
   font-size: 14px;
   color: #6666ff;
+  cursor: pointer;
+}
+
+.footerend_2{
+  position: absolute;
+  bottom: 90px;
+  right: 180px;
+}
+.footerend_2 li{
+  float: left;
+  margin-left: 30px;
+}
+.footerend_2 .github{
+  display: block;
+  width: 20px;
+  height: 20px;
+  background-image: url(../../public/image/github.png);
+  background-size: contain;
+  text-indent: -9999px;
+}
+.footerend_2 .figma{
+  display: block;
+  width: 20px;
+  height: 20px;
+  background-image: url(../../public/image/figma.png);
+  background-size: contain;
+  text-indent: -9999px;
+}
+.footerend_2 .notion{
+  display: block;
+  width: 20px;
+  height: 20px;
+  background-image: url(../../public/image/notion.png);
+  background-size: contain;
+  text-indent: -9999px;
 }

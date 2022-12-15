@@ -14,9 +14,9 @@ import Lottie from 'lottie-react';
 import { hero_image1 } from '../assets';
 import { hero_image2 } from '../assets';
 import { loading } from '../assets';
-// import { faFigma } from "@fortawesome/free-brands-svg-icons";
-// import { faGithub } from "@fortawesome/free-brands-svg-icons";
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faFigma } from "@fortawesome/free-brands-svg-icons";
+import { faGithub } from "@fortawesome/free-brands-svg-icons";
 
 const HomePage = () => {
   const navigate = useNavigate();
@@ -119,6 +119,7 @@ const HomePage = () => {
       </div>
       <footer id="footerwrap">
         <div class="footer">
+          <div className="bgcolour2"></div>
           <div class="logo">
             <h1><a href="#!">LOGO</a></h1>
           </div>
@@ -145,13 +146,18 @@ const HomePage = () => {
             </ul>
           </div>
           <div className="footerend_1">
-            <a herf="#">Terms</a>
-            <a herf="#">Privacy</a>
-            <a herf="#">Cookies</a>
+            <ul className="clearfix">
+              <li><a href="#">Terms</a></li>
+              <li><a href="#">Privacy</a></li>
+              <li><a href="#">Cookies</a></li>
+            </ul>
           </div>
           <div className="footerend_2">
-            {/* <FontAwesomeIcon icon="faFigma" />
-              <FontAwesomeIcon icon="faGithub" /> */}
+            <ul className="clearfix">
+              <li><a href="https://github.com/attention-diary" className="github">github</a></li>
+              <li><a href="https://www.figma.com/file/5PrswdP5LueSIUPm7NCFmd/%EC%98%A4%ED%94%88-%EB%8B%A4%EC%9D%B4%EC%96%B4%EB%A6%AC?node-id=0%3A1&t=DLqYsAdK2ALI7qQF-1" className="figma">figma</a></li>
+              <li><a href="https://teamsparta.notion.site/4-7982bdfb5744440abcde00cb0f4f38ed" className="notion">notion</a></li>
+            </ul>
           </div>
         </div>
       </footer>

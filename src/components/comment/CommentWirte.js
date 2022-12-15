@@ -18,7 +18,7 @@ const CommentWrite = ({
         value={comment}
       ></textarea>
       <button onClick={commentHandler} className="primary_btn post_btn">
-        POST
+        등록하기
       </button>
     </div>
   );

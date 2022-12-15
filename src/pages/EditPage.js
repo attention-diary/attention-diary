@@ -1,5 +1,5 @@
 
-import "../india.css";
+import "../pages/india.css";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
@@ -16,7 +16,7 @@ const EditPage = () => {
   console.log(state)
 
   return (
-    <div className='form-wrapper'>
+    <div className='formwrapper_edit'>
       <h2 className='form-title'>
         관심이 필요한 오늘을 수정해주세요
       </h2>

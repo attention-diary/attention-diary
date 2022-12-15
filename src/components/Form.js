@@ -20,7 +20,7 @@ export default function Form({ state }) {
       {error ? <span>뭔가 이상합니다!</span> : null}
       <div className='form-box'>
         <form className='form-top'>
-          <div>
+          <div className="form_top">
             <label htmlFor="title">제목</label>
             <input
               type="text"
@@ -30,7 +30,7 @@ export default function Form({ state }) {
               onChange={(e) => handleChangeInputField(e)}
             />
           </div>
-          <div>
+          <div className='form_top'>
             <label htmlFor="name">이름</label>
             <input
               type="text"
@@ -42,7 +42,7 @@ export default function Form({ state }) {
           </div>
         </form>
         <form className='form-btm'>
-          <div>
+          <div className='form_top'>
             <label htmlFor="content">내용</label>
             <textarea
               rows="20" cols="100"
