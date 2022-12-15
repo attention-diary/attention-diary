@@ -1,10 +1,10 @@
-import axios from 'axios';
+import axios from "axios";
 
 const api = axios.create({
-  baseURL: 'http://localhost:3100',
+  baseURL: process.env.REACT_APP_URL,
 });
 
-const POST = '/post';
+const POST = process.env.POST;
 
 // method GET
 export const getPost = async () => {
@@ -15,9 +15,9 @@ export const getPost = async () => {
 // method PATCH /post/id
 export const editPost = async ({ id, name, title, content }) => {
   return await api.patch(POST + `/${id}`, { name, title, content });
-}
+};
 
 // method POST /post
 export const postPost = async (newPost) => {
   return await api.post(POST, newPost);
-}
+};
