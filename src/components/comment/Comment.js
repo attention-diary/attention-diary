@@ -10,6 +10,7 @@ const Comment = ({
   commentDeleteHandler,
   setComment,
   commentId,
+  isUpdate,
 }) => {
   return (
     <div className="comment">
@@ -18,6 +19,7 @@ const Comment = ({
         comment={comment}
         commentHandler={commentHandler}
         commentId={commentId}
+        isUpdate={isUpdate}
       />
       <CommentList
         comments={comments}

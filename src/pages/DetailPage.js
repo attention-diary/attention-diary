@@ -17,7 +17,6 @@ import {
   __deleteComment,
 } from "../redux/thunk/thunk";
 
-
 const DetailPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -27,7 +26,6 @@ const DetailPage = () => {
   const [comment, setComment] = useState("");
   const [limitScroll, commentIndex, commentIsLoding] = useSpinner();
 
-
   const [commentArr, setCommentArr] = useState(
     state.comment.slice(0, commentIndex)
   );
@@ -35,8 +33,8 @@ const DetailPage = () => {
   const isUpdate = useRef(false); //댓글을 수정한다면 사용될 flag값
 
   // india
-  const editedPost = useSelector(state => state.post.post);
-  const currPost = editedPost.find(post => post.id === state.id);
+  const editedPost = useSelector((state) => state.post.post);
+  const currPost = editedPost.find((post) => post.id === state.id);
 
   const [inputs, setInputs] = useState({
     title: state.title,
@@ -45,7 +43,6 @@ const DetailPage = () => {
   });
 
   const { title, content, name } = inputs;
-
 
   useEffect(() => {
     dispatch(__getPosts());
@@ -67,6 +64,7 @@ const DetailPage = () => {
   }, [limitScroll, post]);
 
   useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "auto" });
     dispatch(__getPosts());
     isUpdate.current = false;
   }, [dispatch]);
@@ -164,6 +162,7 @@ const DetailPage = () => {
         onChangeComment={onChangeComment}
         comment={comment}
         commentId={commentId}
+        isUpdate={isUpdate}
         setComment={setComment}
         commentHandler={commentHandler}
         comments={commentArr}
