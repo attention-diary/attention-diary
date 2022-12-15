@@ -49,7 +49,7 @@ const lydiaSlice = createSlice({
   },
 });
 
-export const { } = lydiaSlice.actions;
+export const {} = lydiaSlice.actions;
 
 const lydiaReducer = lydiaSlice.reducer;
 

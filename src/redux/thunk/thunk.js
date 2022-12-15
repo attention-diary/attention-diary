@@ -1,11 +1,12 @@
 import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
+// require("dotenv").config();
 
 const axiosApi = (url, options) => {
   const intance = axios.create({ baseURL: url, ...options });
   return intance;
 };
-const defaultInstance = axiosApi("http://localhost:3100/post");
+const defaultInstance = axiosApi(process.env.REACT_APP_REQ);
 
 export const __getPosts = createAsyncThunk(
   "getPosts",
