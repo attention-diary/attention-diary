@@ -4,7 +4,7 @@ const api = axios.create({
   baseURL: process.env.REACT_APP_URL,
 });
 
-const POST = process.env.POST;
+const POST = process.env.REACT_APP_POST;
 
 // method GET
 export const getPost = async () => {
