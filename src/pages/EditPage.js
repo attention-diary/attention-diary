@@ -13,7 +13,6 @@ const EditPage = () => {
 
   const { state } = useLocation();
   const editedPost = useSelector(state => state.indiaReducer);
-  console.log(state)
 
   return (
     <div className='formwrapper_edit'>

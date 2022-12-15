@@ -36,14 +36,6 @@ const DetailPage = () => {
   const editedPost = useSelector((state) => state.post.post);
   const currPost = editedPost.find((post) => post.id === state.id);
 
-  const [inputs, setInputs] = useState({
-    title: state.title,
-    content: state.content,
-    name: state.name,
-  });
-
-  const { title, content, name } = inputs;
-
   useEffect(() => {
     dispatch(__getPosts());
     isUpdate.current = false;
@@ -102,7 +94,6 @@ const DetailPage = () => {
   };
 
   const commentHandler = (e) => {
-    console.log("햔재 게시글들 정보", post);
     if (comment.trim() === "") {
       alert("댓글의 내용을 입력해주세요");
       return;
@@ -155,7 +146,7 @@ const DetailPage = () => {
       <WriteBox
         updateHandler={updateHandler}
         deleteHandler={deleteHandler}
-        post={state}
+        post={currPost}
         askNavigate={askNavigate}
       />
       <Comment

@@ -10,12 +10,13 @@
   /* background: #F4F6F9; */
 }
 
-.bg{
-  width: 100vw;height: 90vh;
+.bg {
+  width: 100vw;
+  height: 90vh;
   background: #f4f6f9;
 }
 
-.headerwrap_post{
+.headerwrap_post {
   background: #f4f6f9;
 }
 
@@ -30,10 +31,11 @@
   text-indent: -9999px;
 }
 
-.form-wrapper{
+.form-wrapper {
   position: relative;
 }
-.formwrapper_edit{
+
+.formwrapper_edit {
   width: 900px;
   margin: auto;
   text-align: center;
@@ -50,11 +52,11 @@
   background: white;
   border-radius: 30px 0 0 30px;
   box-shadow: -2px 0 10px 2px rgba(0, 0, 0, 0.2);
-  
+
 
 }
 
-.posting_image{
+.posting_image {
   position: absolute;
   /* top: 160px; */
   bottom: 20px;
@@ -65,7 +67,7 @@
 }
 
 
-.form-wrapper h2{
+.form-wrapper h2 {
   /* color: white; */
   background: white;
 }
@@ -90,10 +92,14 @@
   margin-bottom: 50px;
   background: white;
 }
-.form_top{
+
+.form_top {
   background: white;
 }
-label{background: white;}
+
+label {
+  background: white;
+}
 
 .form-btm {
   display: flex;
@@ -111,8 +117,10 @@ label{background: white;}
   background: white;
 }
 
-input:focus{
-  outline: none !important; border-color: #0099ffa1; box-shadow: 0 0 6px #0099ffa1;
+input:focus {
+  outline: none !important;
+  border-color: #0099ffa1;
+  box-shadow: 0 0 6px #0099ffa1;
 }
 
 
@@ -131,8 +139,10 @@ input:focus{
   font-size: 16px;
 }
 
-textarea:focus{
-  outline: none !important; border-color: #0099ffa1; box-shadow: 0 0 6px #0099ffa1;
+textarea:focus {
+  outline: none !important;
+  border-color: #0099ffa1;
+  box-shadow: 0 0 6px #0099ffa1;
 }
 
 button {
@@ -166,7 +176,8 @@ button {
   padding: 20px;
   text-align: center;
   /* background-color: #ECEFF5; */
-  overflow: scroll;
+  overflow-x: scroll;
+  overflow-y: hidden;
   position: relative;
 }
 
@@ -220,18 +231,24 @@ button {
   left: -15px;
 }
 
-
 .carousel-wrapper {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: relative;
+}
+
+.carousel-btn {
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 1;
 }
 
 .right-btn {
-  /* position: fixed; */
   position: absolute;
-  right: 20px;
-  z-index: 1;
+  top: 80px;
+  right: 0;
   background-color: #6666FF;
   width: 50px;
   height: 50px;
@@ -239,10 +256,9 @@ button {
 }
 
 .left-btn {
-  /* position: fixed; */
   position: absolute;
-  left: 20px;
-  z-index: 1;
+  top: 80px;
+  left: 0;
   background-color: #6666FF;
   width: 50px;
   height: 50px;

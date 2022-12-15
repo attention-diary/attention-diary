@@ -18,25 +18,24 @@ export default function List({ posts }) {
     };
     getCoordinate();
   }, []);
-  // console.log(currIndex);
 
   const handleClickNavBtn = (direction) => {
     if (direction === 'right') {
       const listNode_currentX = listRef.current.childNodes[currIndex + 1].getBoundingClientRect().left;
       listRef.current.style.transform =
         `translateX(-${listNode_currentX - transX}px)`;
-      setCurrIndex(currIndex + 2)
+      setCurrIndex(currIndex + 2);
     } else {
       const listNode_currentX = listRef.current.childNodes[currIndex - 1].getBoundingClientRect().left;
       listRef.current.style.transform =
         `translateX(-${listNode_currentX - transX}px)`;
-      setCurrIndex(currIndex - 2)
+      setCurrIndex(currIndex - 2);
     }
   };
 
   return (
     <>
-      <div className='carousel-wrapper'>
+      <div className='carousel-btn'>
         <button
           type='button'
           onClick={() => handleClickNavBtn('left')}
@@ -51,6 +50,8 @@ export default function List({ posts }) {
         >
           {`>`}
         </button>
+      </div>
+      <div className='carousel-wrapper'>
         <ul className='carousel' ref={listRef}>
           {posts.map(post => (
             <li key={post.id}>
