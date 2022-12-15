@@ -14,9 +14,6 @@ import Lottie from 'lottie-react';
 import { hero_image1 } from '../assets';
 import { hero_image2 } from '../assets';
 import { loading } from '../assets';
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faFigma } from "@fortawesome/free-brands-svg-icons";
-import { faGithub } from "@fortawesome/free-brands-svg-icons";
 
 const HomePage = () => {
   const navigate = useNavigate();
